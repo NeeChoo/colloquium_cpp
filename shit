@@ -1,0 +1,56 @@
+struct strng
+{
+	char ** words;
+	int * word_length;
+	int number_words;
+	int * number_consonantals;	
+};
+
+
+void sort(strng &words)
+{
+	int intBuf, intBufLength;
+	char * charBuf;	
+	int x;
+	charBuf = (char*)malloc(sizeof(char));
+	for (int i = 0; i < words.number_words-1; i++)
+	{
+		for (int j = 0; j < words.number_words-1; j++)
+		{
+			if (words.number_consonantals[j] > words.number_consonantals[j+1])
+			{
+				intBufLength = words.word_length[j];
+				intBuf = words.number_consonantals[j];
+				charBuf = (char*)realloc(charBuf, ((words.word_length[j])+1) * sizeof(char));
+				charBuf = words.words[j];
+				charBuf[words.word_length[j]] = '\0';
+			
+
+
+				words.word_length[j]= words.word_length[j+1];
+				words.number_consonantals[j] = words.number_consonantals[j+1];
+				words.words[j] = (char*)realloc(words.words[j], ((words.word_length[j+1])+1) * sizeof(char));
+				words.words[j] = words.words[j + 1];
+				words.words[j][words.word_length[j]] = '\0';
+			
+
+				
+				words.word_length[j + 1]= intBufLength;
+				words.number_consonantals[j + 1] = intBuf;
+				words.words[j+1] = (char*)realloc(words.words[x], ((intBufLength+1) * sizeof(char)));
+				words.words[j+1][words.word_length[j+1]] = '\0';
+				words.words[j+1] = charBuf;
+				
+
+				
+
+
+				for (int i = 0; i < words.number_words; i++)
+		{
+			printf("%s ", words.words[i]);
+		}
+		printf("\n");
+			}
+		}
+
+	}
